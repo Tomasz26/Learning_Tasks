@@ -58,7 +58,8 @@ def create_contacts(card_type, number):
 
 Cards = [someone, someone2, someonework]
 
-create_contacts('Business', 5)
+create_contacts('Business', 2)
+create_contacts('Home', 3)
 
 by_name = sorted(Cards, key=lambda card: card.name)
 by_surname = sorted(Cards, key=lambda card: card.surname)
