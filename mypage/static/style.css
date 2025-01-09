@@ -1,0 +1,10 @@
+h1 {
+    text-align: center; 
+    background: grey;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    height: auto;
+}
