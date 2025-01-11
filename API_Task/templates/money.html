@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+{% extends "parent.html" %}
+{% block content %}
+<h2>Calculate how much you need to pay for a desired amount of chosen currency</h2>
+
+
+    <p>Select currency then type how much of it you'd like to buy and click "Calculate" button.</p>
+
+<div class = center>   
+
+    <form action="" method="POST">
+        <label for="currency">Choose a currency:</label>
+        <select name="currency" id="currency">
+            <option value="dolar amerykański">USD</option>
+            <option value="dolar australijski">AUD</option>
+            <option value="dolar kanadyjski">CAD</option>
+            <option value="euro">EUR</option>
+            <option value="forint (Węgry)">HUF</option>
+            <option value="frank szwajcarski">CHF</option>
+            <option value="funt szterling">GBP</option>
+            <option value="jen (Japonia)">JPY</option>
+            <option value="korona czeska">CZK</option>
+            <option value="korona duńska">DKK</option>
+            <option value="korona norweska">NOK</option>
+            <option value="korona szwedzka">SEK</option>
+            <option value="SDR (MFW)">XDR</option>
+        </select>
+        <br><br>
+        <label>How much would you like to buy</label>
+        <input name="quantity"/>
+        <br><br>
+        <input type="submit" value="Calculate"/>
+    </form>
+
+    {% if result_message %}
+    <h3>{{ result_message }}</h3>
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+</html>
