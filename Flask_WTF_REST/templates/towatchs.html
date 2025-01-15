@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Watchlist</title>
+    <style>
+        body{background: url("/static/home_theater_cozy.png") no-repeat center center fixed;
+        background-size: cover;}
+        th, tr, td {border: 1px solid black;}
+        h2, h3, p {color: white}
+        table{
+        background-color: rgba(255, 255, 255, 0.8);
+        color: black;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);}
+    </style>
+</head>
+<body>
+    <div class = "center">    
+        <h2>List of movies to watch with your friends and family!</h2>
+
+        <table>
+            <thead>
+            <th>ID</th>    
+            <th>Title</th>
+            <th>Description</th>
+            <th>Have you watched this?</th>
+            </thead>
+        {% for towatch in towatchs %}
+            <tr>
+                <th>{{ towatch.id }}</th>
+                <td><a href="/towatchs/{{ loop.index }}">{{ towatch.title }}</a></td>
+                <td>{{ towatch.description }}</td>
+                <td>{{ towatch.done }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+
+    <div>
+        <h2> Add new movie: </h2>
+        <form method="POST" action="/towatchs/">
+            {{ form.hidden_tag() }}
+            <table>
+                {% for field in form if field.widget.input_type != 'hidden' %}
+                    <tr>
+                        <th>{{ field.label }} {% if field.flags.required %}*{% endif %}</th>
+                        <td>{{ field }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    </div>
+
+    <div>
+        <h2> Oh great RANDOM from Python, please help me find some film to watch today!!! </h2>
+        <form method="GET" action="/towatchs/random">
+            <button type="submit">Choose a movie!</button>
+        </form>
+        {% if movie %}
+        <h3>Selected Movie:</h3>
+        <p><strong>Title:</strong> {{ movie.title }}</p>
+        <p><strong>Description:</strong> {{ movie.description }}</p>
+    {% endif %}
+    </div>
+
+</body>
+</html>

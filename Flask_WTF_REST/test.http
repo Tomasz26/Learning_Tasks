@@ -1,0 +1,9 @@
+PUT http://localhost:5000/api/v1/towatchs/3
+Content-Type: application/json
+
+{
+  "title": "Smurfs 2",
+  "description": "Movie about blue guys",
+  "done": false,
+  "id": 3
+}
