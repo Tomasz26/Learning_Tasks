@@ -1,24 +1,36 @@
 {% extends "index.html" %}
 
 {% block content %}
-<div class = "center">    
-    <h2>List of movies on my shelf!</h2>
+<div class="col-lg-12 text-center " style="margin-bottom: 15px;">    
+    <h2 class="mt-5">List of movies on my shelf!</h2>
 
-    <table>
+    <table class="mt-5 text-center" style="margin: auto; border-collapse: collapse; width: 80%;">
         <thead>
-        <th>ID</th>    
-        <th>Title</th>
-        <th>Cast</th>
-        <th>Have I borrowed this?</th>
+            <th style="border: 1px solid black; padding: 10px;">ID</th>    
+            <th style="border: 1px solid black; padding: 10px;">Title</th>
+            <th style="border: 1px solid black; padding: 10px;">Cast</th>
+            <th style="border: 1px solid black; padding: 10px;">Have I borrowed this?</th>
         </thead>
-    {% for towatch in towatchs %}
-        <tr>
-            <th>{{ towatch.id }}</th>
-            <td><a href="/towatchs/{{ loop.index }}">{{ towatch.title }}</a></td>
-            <td>{{ towatch.description }}</td>
-            <td>{{ towatch.done }}</td>
-        </tr>
-    {% endfor %}
+        <tbody>
+        {% for movie in movies %}
+            <tr>
+                <td style="border: 1px solid black; padding: 10px;">{{ movie.id }}</td>
+                <td style="border: 1px solid black; padding: 10px;">{{ movie.title }}</td>
+                <td style="border: 1px solid black; padding: 10px;">
+                    {% for actor in movie.actors %}
+                        {{ actor.name }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td style="border: 1px solid black; padding: 10px;">
+                    {% if movie.last_borrowing and movie.last_borrowing.date_returned is none %}
+                        Borrowed
+                    {% else %}
+                        Available
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
 </div>
 {% endblock %}
